@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvggopq2y603o"]
+[gd_scene load_steps=12 format=3 uid="uid://cvggopq2y603o"]
 
 [ext_resource type="Texture2D" uid="uid://b1gknu6vfxx8l" path="res://assets/Bg.png" id="1_g6a3p"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="2_tbtry"]
 [ext_resource type="FontFile" uid="uid://dg0vtnf2xhsad" path="res://assets/pixel_font.ttf" id="2_ylaox"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="3_micun"]
+[ext_resource type="Script" path="res://scenes/ball.gd" id="4_fo0gh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thhdm"]
-size = Vector2(14.961, 77.1664)
+size = Vector2(15, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhhgo"]
 size = Vector2(10, 10)
@@ -30,33 +32,50 @@ script = ExtResource("2_tbtry")
 
 [node name="Player" type="StaticBody2D" parent="."]
 position = Vector2(50, 324)
+script = ExtResource("3_micun")
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
-offset_left = 17.9532
-offset_top = 28.6901
-offset_right = 32.9532
-offset_bottom = 105.69
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -50.0
+offset_right = 7.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(25.4338, 67.2733)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_thhdm")
 
 [node name="AI" type="StaticBody2D" parent="."]
-position = Vector2(1082, 324)
+position = Vector2(50, 324)
+script = ExtResource("3_micun")
 
 [node name="ColorRect" type="ColorRect" parent="AI"]
-offset_left = 17.9532
-offset_top = 28.6901
-offset_right = 32.9532
-offset_bottom = 105.69
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -50.0
+offset_right = 7.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI"]
-position = Vector2(25.4338, 67.2733)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_thhdm")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(576, 324)
 collision_mask = 3
+script = ExtResource("4_fo0gh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("RectangleShape2D_fhhgo")

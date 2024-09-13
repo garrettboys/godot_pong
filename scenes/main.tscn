@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dg0vtnf2xhsad" path="res://assets/pixel_font.ttf" id="2_ylaox"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="3_micun"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="4_fo0gh"]
+[ext_resource type="Script" path="res://scenes/ai.gd" id="4_q2jyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thhdm"]
 size = Vector2(15, 100)
@@ -21,10 +22,8 @@ size = Vector2(1152, 18.9037)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mc1xq"]
 size = Vector2(18, 648.989)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj22j"]
-size = Vector2(7.26312, 845.732)
-
 [node name="Main" type="Sprite2D"]
+editor_description = "yo yo yo"
 texture_filter = 1
 texture = ExtResource("1_g6a3p")
 centered = false
@@ -48,12 +47,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_thhdm")
 
 [node name="AI" type="StaticBody2D" parent="."]
-position = Vector2(50, 324)
-script = ExtResource("3_micun")
+position = Vector2(1102, 324)
+script = ExtResource("4_q2jyl")
 
 [node name="ColorRect" type="ColorRect" parent="AI"]
 anchors_preset = 8
@@ -69,7 +67,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI"]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_thhdm")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
@@ -105,18 +102,17 @@ position = Vector2(576, 657.452)
 shape = SubResource("RectangleShape2D_wecm1")
 
 [node name="ScoreLeft" type="Area2D" parent="."]
+position = Vector2(-9, 324)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLeft"]
-position = Vector2(-9, 324.495)
+[node name="Left" type="CollisionShape2D" parent="ScoreLeft"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_mc1xq")
 
-[node name="ScoreRight" type="Area2D" parent="."]
-position = Vector2(24, 16)
+[node name="ScoreLeft2" type="Area2D" parent="."]
+position = Vector2(1161, 324)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreRight"]
-position = Vector2(1138.55, 306.491)
-scale = Vector2(2.87875, -0.765991)
-shape = SubResource("RectangleShape2D_gj22j")
+[node name="Left" type="CollisionShape2D" parent="ScoreLeft2"]
+shape = SubResource("RectangleShape2D_mc1xq")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -147,3 +143,5 @@ vertical_alignment = 1
 [node name="BallTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
